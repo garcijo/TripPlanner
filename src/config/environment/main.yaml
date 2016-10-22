@@ -1,0 +1,9 @@
+settings:
+  determineRouteBeforeAppMiddleware: true
+db:
+  dbType: mysql
+  host: localhost
+  dbName: mytrip
+  charset: utf8
+  username: vagrant
+  password: vagrant
