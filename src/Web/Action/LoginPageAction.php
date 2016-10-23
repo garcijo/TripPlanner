@@ -6,7 +6,7 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\Twig;
 
-class HomePageAction
+class LoginPageAction
 {
     protected $view;
 
@@ -17,8 +17,8 @@ class HomePageAction
 
     public function __invoke(Request $request, Response $response, $args)
     {
-        $data = ['title' => 'Home'];
+        $data = ['title' => 'MyTrip - Login'];
 
-        return $this->view->render($response, 'home.html', $data);
+        return $this->view->render($response, 'login.html', $data);
     }
 }
