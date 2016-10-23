@@ -19,10 +19,10 @@
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `name` varchar(20) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
   `email` varchar(60) NOT NULL,
