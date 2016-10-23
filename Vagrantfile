@@ -1,16 +1,19 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# All Vagrant configuration is done below. The "2" in Vagrant.configure
-# configures the configuration version (we support older styles for
-# backwards compatibility). Please don't change it unless you know what
-# you're doing.
 $script = <<SCRIPT
   echo I am provisioning...
   date > vagrant_provisioned_at
   echo I am setting up nginx vhost configuration ...
+
   cp -rp /vagrant/scripts/mytrip.plan.conf /etc/nginx/conf.d/
   service nginx restart
+
+  mysql -u vagrant -pvagrant -e "DROP DATABASE IF EXISTS mytrip";
+  mysql -u vagrant -pvagrant -e "CREATE DATABASE mytrip";
+
+  mysql -u vagrant -pvagrant < /vagrant/scripts/schema.sql
+
 SCRIPT
 Vagrant.configure(2) do |config|
   config.vm.box = "rasmus/php7dev"
