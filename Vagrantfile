@@ -18,7 +18,7 @@ SCRIPT
 Vagrant.configure(2) do |config|
   config.vm.box = "rasmus/php7dev"
   config.vm.provider "virtualbox" do |v|
-    v.name = "my_vm"
+    v.name = "trip_vm"
   end
   #config.vm.customize ["modifyvm", :id, "--name", "Gangnam Style"]
   config.vm.network :private_network, ip: "10.0.60.12"
