@@ -10,6 +10,8 @@ use Web\Action\HomeAction;
 use Web\Action\HomePageAction;
 use Web\Action\LoginAction;
 use Web\Action\LoginPageAction;
+use Web\Action\SignupAction;
+use Web\Middleware\UserVerify;
 
 $container = $app->getContainer();
 
@@ -67,6 +69,19 @@ $container[LoginPageAction::class] = function (ContainerInterface $container) {
 };
 $container[LoginAction::class] = function (ContainerInterface $container) {
     return new LoginAction(
-        $container->get('view')
+        $container->get('view'),
+        $container->get('db')
     );
+};
+$container[SignupAction::class] = function (ContainerInterface $container) {
+    return new SignupAction(
+        $container->get('view'),
+        $container->get('db')
+    );
+};
+
+
+// MIDDLEWARE
+$container['userVerify'] = function () {
+    return new UserVerify();
 };

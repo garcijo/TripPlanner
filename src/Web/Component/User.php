@@ -1,6 +1,6 @@
 <?php
 
-namespace Web\Domain\Component;
+namespace Web\Component;
 
 class User
 {
