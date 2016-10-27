@@ -20,16 +20,26 @@ $ vagrant plugin install vagrant-hostmanager
 ```
 
 Once this is installed, switch to the directory of the cloned repo and start the vagrant 
-box with `vagrant up`. This should take care of installing everything needed to
+box with `vagrant up`; this should take care of installing most things needed to
 run the project. 
 
-To reset the environment including the database:
+After vagrant is setup, the only remaining thing to install will be the Composer dependencies. 
+To do this, first connect to the vagrant box and move to the vagrant directory:
+```
+$ vagrant ssh
+$ cd /vagrant
+```
+Once here, run `composer install`. Once the dependencies are done installing you'll be good to go!
+
+
+
+If needed, you can reset the environment including the database by provisioning the vagrant box:
 
 ```
 $ vagrant provision
 ```
 
-The url for this environment is `http://mytrip.plan`
+The url for this project is `http://mytrip.plan`
 
 
 ###Project status:
