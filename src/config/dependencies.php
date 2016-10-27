@@ -11,6 +11,7 @@ use Web\Action\HomePageAction;
 use Web\Action\LoginAction;
 use Web\Action\LoginPageAction;
 use Web\Action\LogoutAction;
+use Web\Action\NewItemAction;
 use Web\Action\SignupAction;
 use Web\Domain\SessionStorage;
 use Web\Middleware\UserVerify;
@@ -60,6 +61,7 @@ $container['session'] = function () {
 $container[HomePageAction::class] = function (ContainerInterface $container) {
     return new HomePageAction(
         $container->get('view'),
+        $container->get('db'),
         $container->get('session')
     );
 };
@@ -93,6 +95,14 @@ $container[SignupAction::class] = function (ContainerInterface $container) {
 $container[LogoutAction::class] = function (ContainerInterface $container) {
     return new LogoutAction(
         $container->get('view'),
+        $container->get('session')
+    );
+};
+
+// New Items
+$container[NewItemAction::class] = function (ContainerInterface $container) {
+    return new NewItemAction(
+        $container->get('db'),
         $container->get('session')
     );
 };
