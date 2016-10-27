@@ -109,6 +109,8 @@ $container[NewItemAction::class] = function (ContainerInterface $container) {
 
 
 // MIDDLEWARE
-$container['userVerify'] = function () {
-    return new UserVerify();
+$container['userVerify'] = function (ContainerInterface $container) {
+    return new UserVerify(
+        $container->get('session')
+    );
 };

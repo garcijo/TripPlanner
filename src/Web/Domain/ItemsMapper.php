@@ -70,4 +70,16 @@ class ItemsMapper
         return $items;
     }
 
+    public function deleteItem(int $itemId)
+    {
+        $sql = 'DELETE FROM {$this->itemsTable} WHERE id=:id';
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute(['id' => $itemId]);
+        if (!$result) {
+            throw new \Exception('Could not delete item!');
+        }
+
+        return true;
+    }
+
 }

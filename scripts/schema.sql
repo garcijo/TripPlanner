@@ -59,3 +59,35 @@ CREATE TABLE `items` (
     REFERENCES `users`(`username`)
     ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `luggage`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `luggage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`),
+  INDEX `uname` (username),
+  FOREIGN KEY (username)
+    REFERENCES `users`(`username`)
+    ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `bagsItems`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bagsItems` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `bagId` int(11) NOT NULL,
+  `itemId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `bagId` (bagId),
+  FOREIGN KEY (bagId)
+    REFERENCES `luggage`(`id`)
+    ON DELETE CASCADE,
+  FOREIGN KEY (itemId)
+    REFERENCES `items`(`id`)
+    ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
