@@ -31,7 +31,7 @@ class SignupAction
         $user = $userMapper->searchUser($userName);
 
         if (!empty($user->getName())) {
-            $_POST['error'] = '<p class="error">That email address already exists!</p>';
+            $_POST['error'] = '<p class="error">That username already exists!</p>';
 
             return $this->view->render($response, 'login.html', $args);
         } else {
