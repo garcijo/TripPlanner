@@ -9,7 +9,9 @@
 <br>
 
 <div class="form">
-    <?php if(isset($_POST['error'])){ echo $_POST['error'];}?>
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
     <form class="register-form" action="signup" method="post">
         <input type="text" name="name" placeholder="name"/>
         <input type="password" name="password" placeholder="password"/>

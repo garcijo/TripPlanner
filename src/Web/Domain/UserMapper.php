@@ -68,9 +68,9 @@ class UserMapper
      * @param string $userName The current user's username
      * @param string $userPass  The current user's password
      *
-     * @return User
+     * @return
      */
-    public function loginUser(string $username, string $pass) : User
+    public function loginUser(string $username, string $pass)
     {
         $sql = "SELECT username, password, name
             FROM {$this->usersTable} WHERE username = :username";
@@ -80,10 +80,10 @@ class UserMapper
             if (password_verify($pass, $rs['password'])) {
                 return new User($rs);
             } else {
-                return new User(['username' => '', 'password' => '', 'name' => '']);
+                return null;
             }
         } else {
-            return new User(['username' => '', 'password' => '', 'name' => '']);
+            return null;
         }
     }
 }
