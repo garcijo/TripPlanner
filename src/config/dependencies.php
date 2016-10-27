@@ -87,7 +87,8 @@ $container[LoginAction::class] = function (ContainerInterface $container) {
 $container[SignupAction::class] = function (ContainerInterface $container) {
     return new SignupAction(
         $container->get('view'),
-        $container->get('db')
+        $container->get('db'),
+        $container->get('session')
     );
 };
 
