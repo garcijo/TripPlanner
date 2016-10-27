@@ -98,9 +98,6 @@
 #topnav ul li a.mainpage.active {
     color: #7ed0d6;
 }
-#topnav ul li a.music.active {
-    color: #87D69B;
-}
 #topnav ul li a.active:before {
     width: 100%;
 }

@@ -34,14 +34,23 @@ class LoginAction
 
             $userMapper = new UserMapper($this->db);
             $user = $userMapper->loginUser($userName, $userPass);
-            $name = $user->getName();
 
+            if ($user == null) {
+                return $this->view->render($response, 'login.html', $data);
+            }
+
+            $name = $user->getName();
             $this->session->set('user', $name);
             $data['name'] = $name;
-            return $this->view->render($response, 'home.html', $data);
         } else {
+            $data['error'] = 'Incorrect login!';
+
             return $this->view->render($response, 'login.html', $data);
         }
+
+        $response = $response->withRedirect('/home');
+
+        return $response;
 
     }
 
