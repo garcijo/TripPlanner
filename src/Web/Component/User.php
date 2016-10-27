@@ -16,23 +16,23 @@ class User
      */
     public function __construct(array $data)
     {
-        $this->email = $data['email'];
-        $this->name = $data['name'];
+        $this->username = $data['username'];
         $this->password = $data['password'];
+        $this->name = $data['name'];
     }
 
-    public function getEmail():string
+    public function getUsername():string
     {
-        return $this->email;
-    }
-
-    public function getName():string
-    {
-        return $this->name;
+        return $this->username;
     }
 
     public function getPass():string
     {
         return $this->password;
+    }
+
+    public function getName():string
+    {
+        return $this->name;
     }
 }

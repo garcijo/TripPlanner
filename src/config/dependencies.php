@@ -11,6 +11,7 @@ use Web\Action\HomePageAction;
 use Web\Action\LoginAction;
 use Web\Action\LoginPageAction;
 use Web\Action\SignupAction;
+use Web\Domain\SessionStorage;
 use Web\Middleware\UserVerify;
 
 $container = $app->getContainer();
@@ -48,11 +49,17 @@ $container['db'] = function (ContainerInterface $container) {
     return new Database($dsn, $dbConfig['username'], $dbConfig['password']);
 };
 
+// Session container
+$container['session'] = function () {
+    return new SessionStorage();
+};
+
 
 // Home page
 $container[HomePageAction::class] = function (ContainerInterface $container) {
     return new HomePageAction(
-        $container->get('view')
+        $container->get('view'),
+        $container->get('session')
     );
 };
 $container[HomeAction::class] = function (ContainerInterface $container) {
@@ -70,7 +77,8 @@ $container[LoginPageAction::class] = function (ContainerInterface $container) {
 $container[LoginAction::class] = function (ContainerInterface $container) {
     return new LoginAction(
         $container->get('view'),
-        $container->get('db')
+        $container->get('db'),
+        $container->get('session')
     );
 };
 $container[SignupAction::class] = function (ContainerInterface $container) {
